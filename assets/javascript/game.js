@@ -1,20 +1,22 @@
 // Arrays that lists out all of the options
-var characterNames = ["ariel", "elsa", "mulan", "simba", "lilo", "jasmine", "cinderella", "belle", "jafar", "pocahontas", "alice", "bambi"];
-var alphabets = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p",
-"q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+var characterNames= ["ariel", "elsa", "mulan", "simba", "lilo", "jasmine", "cinderella", "belle", "jafar", "pocahontas", "alice", "bambi"];
+var alphabets= ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p",
+"q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
-// Variables - generate random name from array
-var answerName = characterNames[Math.floor(Math.random() * characterNames.length)];
-var answerNameSplit = answerName.split("");
-// console.log(answerName);
-// console.log(answerNameSplit);
+// Object - generate random name from array
+var answerNameState = {
+answerName: characterNames[Math.floor(Math.random() * characterNames.length)],
+}
+// console.log(answerNameState);
+var answerNameSplit = answerNameState.answerName[Math.floor(Math.random() * answerNameStates.answerName.length)].rsplit("");
+
 
 // Variables - hold the record of wins and loses
-var answerSpaces = [];
-var guessedRight = [];
-var guessedWrong = [];
-var chanceRemaining = 10;
-var totalWins = 0;
+var answerSpaces= [];
+var guessedRight= [];
+var guessedWrong= [];
+var chanceRemaining= 10;
+var totalWins= 0;
 
 // Variables - provide references to HTML
 var answerSpacesText = document.getElementById("answer-spaces-text");
@@ -40,20 +42,21 @@ function resetGuesses () {
     guessedWrong.length = 0;
 }
 
-// Function - reset answer
-function resetAnswer () {
-    answerSpaces.length=0;
-}
-
 // Function - create answer spaces
 function showAnswerSpaces() {
-    for (i = 0; i < answerNameSplit.length; i++) {
+    for (i = 0; i < answerNameState.answerNameSplit.length; i++) {
         // console.log(i);
         answerSpaces.push("_");
     }
     answerSpacesText.innerHTML = answerSpaces.join(" ");
 }
 
+// Function - reset answer
+function resetAnswer () {
+    answerSpaces.length=0;
+
+    state.answerName;
+}
 
 // When page is load, display answer spaces
 showAnswerSpaces() 
