@@ -1,5 +1,6 @@
 # _Word Guess Game - Disney Movie Characters_
 ### Think you know all the Disney Movie Characters? Test it here! :fire:
+[Github] (https://hojungt.github.io/Word-Guess-Game/)
 ##### * Begin the game by entering any KEY.
 ##### * The numbers of underscored spaces are assigned by the number of alphabets of the answer.
 ##### * For every letter guessed right, it will pop up in Right Guesses and replace the underscored spaces with the guess.
