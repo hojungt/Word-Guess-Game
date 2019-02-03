@@ -37,6 +37,10 @@ function reloadPage() {
     location.reload();
   }
 
+// Function - make uppercase letters???
+// var userGuessUppercase = userGuess.toUpperCase();
+// var alphabetsUppercase = alphabets.toUpperCase();
+
 // Functions - event listener on user guess
 document.onkeyup = function(event) {
 
@@ -44,12 +48,12 @@ document.onkeyup = function(event) {
     directionsText.textContent = "";
 
     var userGuess = event.key;
-    // Variables - make uppercase letters. 
-    // Remove variables and just call for method?
-    // var userGuessUppercase = userGuess.toUpperCase();
-    // var alphabetsUppercase = alphabets.toUpperCase();
 
     if (guessedRight.includes(userGuess)) {
+            alert ("you guessed that already");
+    }
+
+    else if (guessedWrong.includes(userGuess)) {
             alert ("you guessed that already");
     }
 
@@ -57,12 +61,17 @@ document.onkeyup = function(event) {
         if (answerNameSplit.includes(userGuess)) {
             var index = answerNameSplit.indexOf(userGuess);
 
-            if (index > -1) {
-                answerSpaces[index] = userGuess;
+            for (i=0; i<answerNameSplit.length; i++)
+            {
+                if (answerNameSplit[i] == userGuess)
+                {
+                    answerSpaces[i] = userGuess; 
+                }
             }
-
+            
             guessedRight.push(userGuess);
             guessedRight.sort();
+            guessedRightText.innerHTML = guessedRight.join(", ");
 
             if (guessedRight.length === answerNameSplit.length) {
                 alert("you win!");
@@ -72,6 +81,7 @@ document.onkeyup = function(event) {
         else if (alphabets.includes(userGuess)){
             guessedWrong.push(userGuess);
             guessedWrong.sort();
+            guessedWrongText.innerHTML = guessedWrong.join(", ");
 
             if (guessedWrong.length > 9) {
                 alert("you lose!");
@@ -87,7 +97,3 @@ document.onkeyup = function(event) {
     console.log (guessedWrong);
     // console.log (chanceRemaining);
 }
-
-
-// chartAt?
-// repeated letters?
