@@ -31,45 +31,55 @@ function showAnswerSpaces() {
 }
 showAnswerSpaces() 
 
+// Function - reload page
+function reloadPage() {
+    location.reload();
+  }
+
 // Functions - event listener on user guess
 document.onkeyup = function(event) {
 
+    // Function - clear direction text
     // directionsText.textContent = "";
 
     var userGuess = event.key;
-    console.log (userGuess);
+    // Variables - make uppercase letters. 
+    // Remove variables and just call for method?
     // var userGuessUppercase = userGuess.toUpperCase();
     // var alphabetsUppercase = alphabets.toUpperCase();
 
     if (answerNameSplit.includes(userGuess)) {
         var index = answerNameSplit.indexOf(userGuess);
+
         if (index !== -1) {
             answerSpaces[index] = userGuess;
         }
         guessedRight.push(userGuess);
         guessedRight.sort();
+
+        if (guessedRight.length === answerNameSplit.length) {
+            alert("you win!");
+            reloadPage();
+        }
     }
-    else {
+    else if (alphabets.includes(userGuess)){
         guessedWrong.push(userGuess);
         guessedWrong.sort();
 
-        function chanceDeduct(num1) {
-            num1 - 1;
+        if (guessedWrong.length > 9) {
+            alert("you lose!");
         }
-        return chanceDeduct();
     }    
+    else {
+        alert("alphabets only...")
+    }
 
     console.log (answerSpaces);
     console.log (guessedRight);
     console.log (guessedWrong);
+    // console.log (chanceRemaining);
 }
 
-// Function - write HTML content 
-// function write() {
-//     document.getElementById("answer-space-text").innerHTML = answerSpacesText.join("");
-// }
-// console.log(write(answerSpacesText));
 
 // chartAt?
-// logical operators?
-// Hide the directions?
+// repeated letters?
