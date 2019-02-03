@@ -28,6 +28,7 @@ function showAnswerSpaces() {
         console.log(i);
         answerSpaces.push("_");
     }
+    answerSpacesText.innerHTML = answerSpaces.join(" ");
 }
 showAnswerSpaces() 
 
@@ -40,7 +41,7 @@ function reloadPage() {
 document.onkeyup = function(event) {
 
     // Function - clear direction text
-    // directionsText.textContent = "";
+    directionsText.textContent = "";
 
     var userGuess = event.key;
     // Variables - make uppercase letters. 
@@ -48,30 +49,37 @@ document.onkeyup = function(event) {
     // var userGuessUppercase = userGuess.toUpperCase();
     // var alphabetsUppercase = alphabets.toUpperCase();
 
-    if (answerNameSplit.includes(userGuess)) {
-        var index = answerNameSplit.indexOf(userGuess);
-
-        if (index !== -1) {
-            answerSpaces[index] = userGuess;
-        }
-        guessedRight.push(userGuess);
-        guessedRight.sort();
-
-        if (guessedRight.length === answerNameSplit.length) {
-            alert("you win!");
-            reloadPage();
-        }
+    if (guessedRight.includes(userGuess)) {
+            alert ("you guessed that already");
     }
-    else if (alphabets.includes(userGuess)){
-        guessedWrong.push(userGuess);
-        guessedWrong.sort();
 
-        if (guessedWrong.length > 9) {
-            alert("you lose!");
-        }
-    }    
     else {
-        alert("alphabets only...")
+        if (answerNameSplit.includes(userGuess)) {
+            var index = answerNameSplit.indexOf(userGuess);
+
+            if (index > -1) {
+                answerSpaces[index] = userGuess;
+            }
+
+            guessedRight.push(userGuess);
+            guessedRight.sort();
+
+            if (guessedRight.length === answerNameSplit.length) {
+                alert("you win!");
+                reloadPage();
+            }
+        }
+        else if (alphabets.includes(userGuess)){
+            guessedWrong.push(userGuess);
+            guessedWrong.sort();
+
+            if (guessedWrong.length > 9) {
+                alert("you lose!");
+            }
+        }    
+        else {
+            alert("alphabets only...")
+        }
     }
 
     console.log (answerSpaces);
