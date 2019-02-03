@@ -1,4 +1,4 @@
-# _Word Guess Game - Disney Movie Characters_
+# __Word Guess Game - Disney Movie Characters__
 ### Think you know all the Disney Movie Characters? Test it here! :fire:
 [Github] (https://hojungt.github.io/Word-Guess-Game/)
 ##### * Begin the game by entering any KEY.
@@ -11,7 +11,7 @@
 #### Creating a game app that runs in the browser and feature dynamically updated HTML and CSS powered by JavaScript code.
 
 ## How Does It Work?
-#### * The javascript code uses an array for storing multiple string values as possible answers. It generates an answer randomly for referencing logical operators, which comprise the guessed-right, guessed-wrong, winning, and losing conditions. All condition outputs are displayed in HTML. 
+#### The javascript code uses an array for storing multiple string values as possible answers. It generates an answer randomly for referencing logical operators, which comprise the guessed-right, guessed-wrong, winning, and losing conditions. All condition outputs are displayed in HTML. 
 
 ## Who Can Use this Repo?
 #### Anyone! :tada:
