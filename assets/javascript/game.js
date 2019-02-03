@@ -1,23 +1,3 @@
-// Arrays that lists out all of the options
-var characterNames= ["ariel", "elsa", "mulan", "simba", "lilo", "jasmine", "cinderella", "belle", "jafar", "pocahontas", "alice", "bambi"];
-var alphabets= ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p",
-"q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-
-// Object - generate random name from array
-var answerNameState = {
-answerName: characterNames[Math.floor(Math.random() * characterNames.length)],
-}
-// console.log(answerNameState);
-var answerNameSplit = answerNameState.answerName[Math.floor(Math.random() * answerNameStates.answerName.length)].rsplit("");
-
-
-// Variables - hold the record of wins and loses
-var answerSpaces= [];
-var guessedRight= [];
-var guessedWrong= [];
-var chanceRemaining= 10;
-var totalWins= 0;
-
 // Variables - provide references to HTML
 var answerSpacesText = document.getElementById("answer-spaces-text");
 var guessedRightText = document.getElementById("guessed-right-text");
@@ -26,8 +6,34 @@ var chanceRemainingText = document.getElementById("chance-remaining");
 var directionsText = document.getElementById("directions-text");
 var totalWinsText = document.getElementById("total-wins-text");
 
+// rewrite all variables with state object
+var state = {
+    characterNames: ["ariel", "elsa", "mulan", "simba", "lilo", "jasmine", "cinderella", "belle", "jafar", "pocahontas", "alice", "bambi"],
+    alphabets: ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p","q", "r", "s", "t", "u", "v", "w", "x", "y", "z"],
+    answerName: [],
+    answerNameSplit: [],
+    answerSpaces: [],
+    guessedRight: [],
+    guessedWrong: [],
+    chanceRemaining: 10,
+    totalWins: 0
+};
+
+// // set the value of answerName after creating the object
+// state.answerName = state.characterNames[Math.floor(Math.random() * state.characterNames.length)];
+// console.log(state.answerName);
+
+// // set the value of answerNameSplit
+// state.answerNameSplit = state.answerName.split("");
+// console.log(state.answerNameSplit);
+
 // Method - display score 
-chanceRemainingText.innerHTML = chanceRemaining;
+chanceRemainingText.innerHTML = state.chanceRemaining;
+
+// Function - update the value of answerNames
+function clearAnswerName() {
+    state.answerSpaces.length=0;
+}
 
 // Function - reload page
 function reloadPage() {
@@ -37,27 +43,23 @@ function reloadPage() {
 // Function - reset guessedRight and guessedWrong
 function resetGuesses () {
     guessedRightText.innerHTML = [];
-    guessedRight.length = 0;
+    state.guessedRight.length = 0;
     guessedWrongText.innerHTML = [];
-    guessedWrong.length = 0;
+    state.guessedWrong.length = 0;
 }
 
 // Function - create answer spaces
 function showAnswerSpaces() {
-    for (i = 0; i < answerNameState.answerNameSplit.length; i++) {
+    state.answerName = state.characterNames[Math.floor(Math.random() * state.characterNames.length)];
+    state.answerNameSplit = state.answerName.split("");
+    for (i = 0; i < state.answerNameSplit.length; i++) {
         // console.log(i);
-        answerSpaces.push("_");
+        state.answerSpaces.push("_");
     }
-    answerSpacesText.innerHTML = answerSpaces.join(" ");
+    answerSpacesText.innerHTML = state.answerSpaces.join(" ");
 }
 
-// Function - reset answer
-function resetAnswer () {
-    answerSpaces.length=0;
-
-    state.answerName;
-}
-
+// ==================================================================================
 // When page is load, display answer spaces
 showAnswerSpaces() 
 
@@ -70,53 +72,54 @@ document.onkeyup = function(event) {
     var userGuess = event.key;
 
     // eliminate duplicate guesses in guessedRight
-    if (guessedRight.includes(userGuess)) {
+    if (state.guessedRight.includes(userGuess)) {
             alert ("you guessed that already");
     }
 
     // eliminate duplicate guesses in guessedWrong
-    else if (guessedWrong.includes(userGuess)) {
+    else if (state.guessedWrong.includes(userGuess)) {
             alert ("you guessed that already");
     }
 
     else {
         // logic operator - if the guess is correct...
-        if (answerNameSplit.includes(userGuess)) {
-            var index = answerNameSplit.indexOf(userGuess);
+        if (state.answerNameSplit.includes(userGuess)) {
+            var index = state.answerNameSplit.indexOf(userGuess);
 
-            for (i=0; i<answerNameSplit.length; i++)
+            for (i=0; i<state.answerNameSplit.length; i++)
             {
-                if (answerNameSplit[i] == userGuess)
+                if (state.answerNameSplit[i] == userGuess)
                 {
-                    answerSpaces[i] = userGuess; 
+                    state.answerSpaces[i] = userGuess; 
                 }
             }
             // generate guessedRightText and answerSpacesText
-            guessedRight.push(userGuess);
-            guessedRight.sort();
-            guessedRightText.innerHTML = guessedRight.join(", ");
-            answerSpacesText.innerHTML = answerSpaces.join(" ");
+            state.guessedRight.push(userGuess);
+            state.guessedRight.sort();
+            guessedRightText.innerHTML = state.guessedRight.join(", ");
+            answerSpacesText.innerHTML = state.answerSpaces.join(" ");
             
             // win condition:
-            if (answerSpaces.join("") == answerName) {
+            if (state.answerSpaces.join("") === state.answerName) {
                 alert("you win!");
                 // nkeep track of win score. need comments
-                totalWinsText.innerHTML = 1 + totalWins++;
+                totalWinsText.innerHTML = 1 + state.totalWins++;
+                chanceRemainingText.innerHTML = state.chanceRemaining = 10;
                 resetGuesses();
-                resetAnswer();
+                clearAnswerName();
                 showAnswerSpaces();
             }
         }
 
         // logic operator - if the guess is incorrect...
-        else if (alphabets.includes(userGuess)){
-            guessedWrong.push(userGuess);
-            guessedWrong.sort();
-            guessedWrongText.innerHTML = guessedWrong.join(", ");
-            chanceRemainingText.innerHTML = -1 + chanceRemaining--;
+        else if (state.alphabets.includes(userGuess)){
+            state.guessedWrong.push(userGuess);
+            state.guessedWrong.sort();
+            guessedWrongText.innerHTML = state.guessedWrong.join(", ");
+            chanceRemainingText.innerHTML = -1 + state.chanceRemaining--;
 
             // lose condition:
-            if (guessedWrong.length > 9) {
+            if (state.guessedWrong.length > 9) {
                 alert("you lose!");
                 alert("play again?");
                 reloadPage();
