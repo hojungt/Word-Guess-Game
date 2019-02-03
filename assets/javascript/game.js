@@ -6,8 +6,8 @@ var alphabets = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m"
 // Variables - generate random name from array
 var answerName = characterNames[Math.floor(Math.random() * characterNames.length)];
 var answerNameSplit = answerName.split("");
-console.log(answerName);
-console.log(answerNameSplit);
+// console.log(answerName);
+// console.log(answerNameSplit);
 
 // Variables - hold the record of wins and loses
 var answerSpaces = [];
@@ -39,10 +39,6 @@ showAnswerSpaces()
 function reloadPage() {
     location.reload();
   }
-
-// Function - make uppercase letters???
-// var userGuessUppercase = userGuess.toUpperCase();
-// var alphabetsUppercase = alphabets.toUpperCase();
 
 // Functions - event listener on key pressed
 document.onkeyup = function(event) {
@@ -102,10 +98,14 @@ document.onkeyup = function(event) {
         }  
         // eliminate uses of non-alphabet characters  
         else {
-            alert("alphabets only...")
+            alert("lowercase alphabets only...")
         }
     }
     // console.log (answerSpaces);
     // console.log (guessedRight);
     // console.log (guessedWrong);
+
+    // Function - make uppercase letters
+    // var userGuessUppercase = userGuess.toUpperCase();
+    // var alphabetsUppercase = alphabets.toUpperCase();
 }
