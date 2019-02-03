@@ -14,6 +14,7 @@ var answerSpaces = [];
 var guessedRight = [];
 var guessedWrong = [];
 var chanceRemaining = 10;
+var totalWins = 0;
 
 // Variables - provide references to HTML
 var answerSpacesText = document.getElementById("answer-spaces-text");
@@ -21,9 +22,28 @@ var guessedRightText = document.getElementById("guessed-right-text");
 var guessedWrongText = document.getElementById("guessed-wrong-text");
 var chanceRemainingText = document.getElementById("chance-remaining");
 var directionsText = document.getElementById("directions-text");
+var totalWinsText = document.getElementById("total-wins-text");
 
 // Method - display score 
 chanceRemainingText.innerHTML = chanceRemaining;
+
+// Function - reload page
+function reloadPage() {
+    location.reload();
+  }
+
+// Function - reset guessedRight and guessedWrong
+function resetGuesses () {
+    guessedRightText.innerHTML = [];
+    guessedRight.length = 0;
+    guessedWrongText.innerHTML = [];
+    guessedWrong.length = 0;
+}
+
+// Function - reset answer
+function resetAnswer () {
+    answerSpaces.length=0;
+}
 
 // Function - create answer spaces
 function showAnswerSpaces() {
@@ -33,14 +53,12 @@ function showAnswerSpaces() {
     }
     answerSpacesText.innerHTML = answerSpaces.join(" ");
 }
+
+
+// When page is load, display answer spaces
 showAnswerSpaces() 
 
-// Function - reload page
-function reloadPage() {
-    location.reload();
-  }
-
-// Functions - event listener on key pressed
+// Event listener on key pressed
 document.onkeyup = function(event) {
 
     // clear direction text
@@ -79,8 +97,11 @@ document.onkeyup = function(event) {
             // win condition:
             if (answerSpaces.join("") == answerName) {
                 alert("you win!");
-                // not sure how to only reload name and keep track of win score. need comments
-                reloadPage();
+                // nkeep track of win score. need comments
+                totalWinsText.innerHTML = 1 + totalWins++;
+                resetGuesses();
+                resetAnswer();
+                showAnswerSpaces();
             }
         }
 
@@ -94,6 +115,8 @@ document.onkeyup = function(event) {
             // lose condition:
             if (guessedWrong.length > 9) {
                 alert("you lose!");
+                alert("play again?");
+                reloadPage();
             }
         }  
         // eliminate uses of non-alphabet characters  
