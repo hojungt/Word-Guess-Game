@@ -17,7 +17,7 @@
 #### Anyone! :tada:
 
 ## Credits
-#### A big Thank You to Jamal O'Garro (Course Instructor), Michael Russo (Course Instructor), Pete Tascio (Course Assistant), and Henry Chen (classmate who walked me through my first long debugging / learning process!). :sparkles:
+#### A big Thank You to Jamal O'Garro (Course Instructor), Michael Russo (Course Instructor), Pete Tascio (Course Assistant), and Henry Chen (classmate) who walked me through my long debugging / learning process!. :sparkles:
 
 ## Notes
 #### This is part of an ongoing school project. Comments and feedbacks are much appreciated! :+1:

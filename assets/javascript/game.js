@@ -8,7 +8,7 @@ var totalWinsText = document.getElementById("total-wins-text");
 
 // rewrite all variables with state object
 var state = {
-    characterNames: ["ariel", "elsa", "mulan", "simba", "lilo", "jasmine", "cinderella", "belle", "jafar", "pocahontas", "alice", "bambi"],
+    characterNames: ["ariel", "sebastian", "stitch", "rapunzel", "mulan", "simba", "lilo", "jasmine", "cinderella", "belle", "aladdin", "jafar", "pocahontas", "alice", "bambi"],
     alphabets: ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p","q", "r", "s", "t", "u", "v", "w", "x", "y", "z"],
     answerName: [],
     answerNameSplit: [],
@@ -29,6 +29,7 @@ var state = {
 
 // Method - display score 
 chanceRemainingText.innerHTML = state.chanceRemaining;
+totalWinsText.innerHTML = state.totalWins;
 
 // Function - update the value of answerNames
 function clearAnswerName() {
@@ -101,13 +102,18 @@ document.onkeyup = function(event) {
             
             // win condition:
             if (state.answerSpaces.join("") === state.answerName) {
-                alert("you win!");
+                alert("Correct! It is " + state.answerName + "!");
                 // nkeep track of win score. need comments
                 totalWinsText.innerHTML = 1 + state.totalWins++;
                 chanceRemainingText.innerHTML = state.chanceRemaining = 10;
                 resetGuesses();
                 clearAnswerName();
                 showAnswerSpaces();
+                if (state.totalWins > 4) {
+                    alert("you are a true Disney lover!");
+                    alert("play again?");
+                    reloadPage();
+                }
             }
         }
 

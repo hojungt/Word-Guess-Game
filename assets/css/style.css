@@ -1,0 +1,11 @@
+body {
+    background-image: url(../images/disney_castle.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center; 
+    text-align: center;
+}
+
+header {
+    margin-top: 30px;
+}
