@@ -19,7 +19,7 @@ var chanceRemaining = 10;
 var answerSpacesText = document.getElementById("answer-spaces-text");
 var guessedRightText = document.getElementById("guessed-right-text");
 var guessedWrongText = document.getElementById("guessed-wrong-text");
-var chanceRemaining = document.getElementById("chance-remaining");
+var chanceRemainingText = document.getElementById("chance-remaining");
 var directionsText = document.getElementById("directions-text");
 
 // Function - create answer spaces
@@ -68,20 +68,22 @@ document.onkeyup = function(event) {
                     answerSpaces[i] = userGuess; 
                 }
             }
-            
+
             guessedRight.push(userGuess);
             guessedRight.sort();
             guessedRightText.innerHTML = guessedRight.join(", ");
+            answerSpacesText.innerHTML = answerSpaces.join(" ");
 
-            if (guessedRight.length === answerNameSplit.length) {
+            if (answerSpaces.join("") == answerName) {
                 alert("you win!");
-                reloadPage();
+                // reloadPage();
             }
         }
         else if (alphabets.includes(userGuess)){
             guessedWrong.push(userGuess);
             guessedWrong.sort();
             guessedWrongText.innerHTML = guessedWrong.join(", ");
+            chanceRemaining-1;
 
             if (guessedWrong.length > 9) {
                 alert("you lose!");
@@ -95,5 +97,4 @@ document.onkeyup = function(event) {
     console.log (answerSpaces);
     console.log (guessedRight);
     console.log (guessedWrong);
-    // console.log (chanceRemaining);
 }
